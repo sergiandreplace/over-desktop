@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/sergiandreplace/over-desktop#readme",
   "dependencies": {
-    "electron": "^0.4.1",
+    "electron-prebuilt": "^0.36.1",
     "node-localstorage": "^0.6.0",
     "ws": "^0.8.1"
   }
