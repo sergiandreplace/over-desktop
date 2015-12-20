@@ -1,0 +1,32 @@
+{
+  "name": "over-desktop",
+  "description": "Over desktop client",
+  "main": "index.js",
+  "authors": [
+    "Sergi Martínez <sergi.martinez@gmail.com>"
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "over",
+    "android",
+    "desktop",
+    "pixel-perfect"
+  ],
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.6"
+  }
+}

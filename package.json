@@ -1,0 +1,30 @@
+{
+  "name": "over-desktop",
+  "version": "1.0.0",
+  "description": "Over desktop client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergiandreplace/over-desktop.git"
+  },
+  "keywords": [
+    "over",
+    "android",
+    "desktop",
+    "pixel-perfect"
+  ],
+  "author": "Sergi Martínez <sergi.martinez@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/sergiandreplace/over-desktop/issues"
+  },
+  "homepage": "https://github.com/sergiandreplace/over-desktop#readme",
+  "dependencies": {
+    "electron": "^0.4.1",
+    "node-localstorage": "^0.6.0",
+    "ws": "^0.8.1"
+  }
+}
