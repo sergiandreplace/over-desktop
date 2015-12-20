@@ -10,7 +10,7 @@ var Server = {
   start : function (port) {
     wss = new WebSocketServer({port:port});
     wss.on('connection', onConnection);
-    
+
   },
 
   stop : function () {
@@ -28,9 +28,7 @@ var Server = {
     Server.start(port);
   }
 
-  setFrontendListener : function(listener) {
-    frontendListener=listener;
-  }
+
 }
 var onConnection = function (websocket) {
   console.log(websocket);
