@@ -1,9 +1,7 @@
 var WebSocket=require('ws');
 var WebSocketServer = WebSocket.Server;
-var clients = {};
-var remoteRole="remote";
-var frontendRole="frontend";
-var frontendListener = function() {};
+var clients = [];
+var onMessageListener = function() {};
 var Server = {
   wss : {},
 
@@ -26,34 +24,37 @@ var Server = {
       Server.stop();
     }
     Server.start(port);
-  }
+  },
 
+  setOnMessageListener : function (listener) {
+    onMessageListener=listener;
+  },
+
+  sendMessage : function (message) {
+    for (var client in clients) {
+      clients[client].send(message);
+    }
+  },
+
+  sendMessageToClient : function (client, message) {
+    clients[client].send(message);
+  }
 
 }
 var onConnection = function (websocket) {
   console.log(websocket);
-  var role=websocket.upgradeReq.url.slice(1);
+  clients.push(websocket);
 
-  if (role!=remoteRole && role!=frontendRole) {
-    websocket.close(1003, '{status: "ko", "code":1003, "reason":"WRONG ROLE"');
-  }else{
-    clients[role]=websocket;
-    websocket.send('{"connection":"ok"}');
-    websocket.on('message', function (message) {
-      var messageObject={};
-      try {
-        messageObject=JSON.parse(message);
-        var target=messageObject.to;
-        if (target==remoteRole || target==frontendRole) {
-          clients[target].send(message);
-        }else{
-          websocket.send ('{"status":"ko","code":"1003","reason":"wrong receipt"}');
-        }
-      } catch (exception) {
-        websocket.send ('{"status":"ko","code":"1003","reason":"malformed json"}');
+
+  websocket.send('{"connection":"ok"}');
+  websocket.on('message', function (message) {
+    for (var client in clients) {
+      if (clients[client]===websocket) {
+        onMessageListener(client,message);
       }
-    });
-  }
+    }
+  });
+
 
 }
 
